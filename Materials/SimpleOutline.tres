@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://vla20t1q1rew"]
+
+[resource]
+blend_mode = 4
+cull_mode = 1
+shading_mode = 0
+specular_mode = 2
+grow = true
+grow_amount = 0.1
+stencil_flags = 2
+stencil_color = Color(1, 1, 1, 1)
+stencil_outline_thickness = 0.0

@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://br1b8deamey3k"]
+
+[ext_resource type="Texture2D" uid="uid://bf7fdq3xnaqss" path="res://Assets/GameResourceData/T_UnknownItemSprite.png" id="1_qfn7x"]
+
+[node name="InventoryItem" type="Control" unique_id=1390390910]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=115688995]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -426.5
+offset_top = -240.0
+offset_right = -298.5
+offset_bottom = -112.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer" unique_id=1498595076]
+layout_mode = 2
+texture = ExtResource("1_qfn7x")

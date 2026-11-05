@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://dk5cqg33rimnc"]
+
+[ext_resource type="PackedScene" uid="uid://dxubltr2lxi53" path="res://Scenes/Player.tscn" id="2_26yhd"]
+[ext_resource type="ArrayMesh" uid="uid://xkk4aostynyi" path="res://Assets/Map/Map.obj" id="3_myvm1"]
+[ext_resource type="PackedScene" uid="uid://luo0hky8mp4g" path="res://Scenes/ship.tscn" id="3_p3ir5"]
+[ext_resource type="Shader" uid="uid://dmre0j167f2k6" path="res://Assets/Map/WaterShader/water.gdshader" id="4_q0mm3"]
+[ext_resource type="Script" uid="uid://chcr34txsxamc" path="res://Scenes/HighlightSelection.cs" id="5_q0mm3"]
+[ext_resource type="Material" uid="uid://ge6gb1tb4ljd" path="res://Materials/MouseHoverOutline.tres" id="6_np2xp"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ci6au"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_26yhd"]
+sky_material = SubResource("ProceduralSkyMaterial_ci6au")
+
+[sub_resource type="Environment" id="Environment_p3ir5"]
+background_mode = 2
+sky = SubResource("Sky_26yhd")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_np2xp"]
+render_priority = 0
+shader = ExtResource("4_q0mm3")
+shader_parameter/base_tint_color = Color(0, 0.94374484, 0.93446654, 1)
+shader_parameter/deep_color = Color(0.03965962, 0.41332653, 0.39719123, 1)
+shader_parameter/water_absorption = Color(0.267, 0.071, 0.2, 1)
+shader_parameter/roughness = 0.125
+shader_parameter/metallic = 0.0
+shader_parameter/specular = 0.5
+shader_parameter/underwater_fog_colour = Color(0.0052265665, 0.3053696, 0.437093, 1)
+shader_parameter/fade_start_depth = 1.5
+shader_parameter/max_depth = 8.5
+shader_parameter/caustics_scale = 2.0
+shader_parameter/caustics_speed = 0.1
+shader_parameter/caustics_intensity = 0.4
+shader_parameter/caustics_depth_fade = 0.17
+shader_parameter/refraction_strength = 1.0
+shader_parameter/refraction_distance_fade = 5.0
+shader_parameter/normal_epsilon = 0.01
+shader_parameter/normal_smoothness_dist = 50.0
+shader_parameter/sea_height = 0.28
+shader_parameter/sea_choppy = 2.50000011875
+shader_parameter/sea_speed = 1.0
+shader_parameter/sea_freq = 0.175
+shader_parameter/foam_color = Color(1, 1, 1, 1)
+shader_parameter/foam_depth_start = 0.1999999955296
+shader_parameter/foam_depth_end = 0.0
+shader_parameter/foam_noise_scale = 2.0
+shader_parameter/foam_noise_speed = 1.0
+shader_parameter/foam_cutoff = 0.3999999910592
+shader_parameter/foam_crest_threshold = 1.0
+shader_parameter/foam_crest_amount = 2.30000003427276
+shader_parameter/foam_edge_color = Color(0, 0, 0.05, 1)
+shader_parameter/foam_edge_offset = Vector2(0.02, 0.02)
+shader_parameter/voronoi_scale = 5.613
+shader_parameter/voronoi_strength = 0.473
+shader_parameter/ITER_GEOMETRY = 3
+shader_parameter/ITER_FRAGMENT = 5
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_q0mm3"]
+points = PackedVector3Array(-14.946446, -0.14367378, -4.913743, -15.810514, -0.14367378, -4.626395, -15.524292, 1.0057167, -4.626395, -5.4687014, -0.14367378, 2.5558329, -16.959003, 1.0057167, -2.040267, -5.4687014, 1.0057167, 2.5558329, -8.912372, 1.0057167, -4.339048, -1.7316074, -0.14367378, -0.31764352, -17.823072, -0.14367378, -2.3276145, 0.27915096, 1.0057167, 1.1190945, -10.924931, -0.14367378, -4.913743, 0.27915096, -0.14367378, 2.268485, -1.445385, 1.0057167, 2.5558329, -17.53505, 1.0057167, -3.1896572, -10.924931, 1.0057167, -4.913743, 0.567173, -0.14367378, 1.1190945, -5.754924, 0.43102145, 2.5558329, -1.7316074, 0.7182566, -0.31764352, 0.27915096, 1.0057167, 1.9811374, -0.5831175, -0.14367378, 2.5558329, -17.823072, 0.7182566, -2.3276145, -17.823072, -0.14367378, -2.90231, -14.085979, 1.0057167, -4.913743, -16.38476, -0.14367378, -4.339048, -0.008872032, 1.0057167, 0.83174694, -5.754924, 0.14367384, 2.5558329, 0.567173, 0.43102145, 1.1190945, 0.567173, -0.14367378, 1.9811374, -16.098537, 1.0057167, -4.339048, -17.53505, 1.0057167, -2.3276145, -3.456143, 1.0057167, -1.1789552)
+
+[node name="Root" type="Node3D" unique_id=1254878992]
+
+[node name="

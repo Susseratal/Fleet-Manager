@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://ge6gb1tb4ljd"]
+
+[ext_resource type="Shader" uid="uid://duk60fe5c5pi2" path="res://Materials/StencilMask.gdshader" id="1_dohca"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_dohca")
+shader_parameter/visibility = 1.0
+shader_parameter/colour = Color(3.1766297e-06, 0.7137618, 0.69120234, 1)
