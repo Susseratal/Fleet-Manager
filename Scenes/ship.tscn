@@ -3,12 +3,12 @@
 [ext_resource type="Script" uid="uid://cfor6ucd8i5t" path="res://Scenes/Ship.cs" id="1_4qyt1"]
 [ext_resource type="ArrayMesh" uid="uid://c22y7oh85wcff" path="res://Assets/The Royal Boat/Sail.obj" id="2_xxxu3"]
 [ext_resource type="Material" uid="uid://ge6gb1tb4ljd" path="res://Materials/MouseHoverOutline.tres" id="3_xxxu3"]
-[ext_resource type="PackedScene" uid="uid://catcmguowno6g" path="res://UserInterface/ShipMenu.tscn" id="4_6ejuo"]
+[ext_resource type="PackedScene" uid="uid://cxg3pk88o2re1" path="res://UserInterface/HoveroverLabel.tscn" id="4_6ejuo"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_4qyt1"]
-size = Vector3(7, 7, 3.3427734)
+[sub_resource type="BoxShape3D" id="BoxShape3D_6ejuo"]
+size = Vector3(7.107422, 4.9853516, 3)
 
-[node name="Ship" type="Node3D" unique_id=1757413001]
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=1856375475]
 script = ExtResource("1_4qyt1")
 outlineMaterial = ExtResource("3_xxxu3")
 
@@ -18,11 +18,11 @@ mesh = ExtResource("2_xxxu3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Mesh" unique_id=1989730221]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/StaticBody3D" unique_id=1962478798]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3138773, 2.1803226, -0.17138672)
-shape = SubResource("BoxShape3D_4qyt1")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/StaticBody3D" unique_id=276179090]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5182463, 2.5066187, 0)
+shape = SubResource("BoxShape3D_6ejuo")
 
-[node name="ShipMenu" parent="." unique_id=5785030 instance=ExtResource("4_6ejuo")]
+[node name="HoveroverLabel" parent="." unique_id=1504144460 instance=ExtResource("4_6ejuo")]
 visible = false
 
 [connection signal="mouse_entered" from="Mesh/StaticBody3D" to="." method="OnStaticBodyMouseEntered"]

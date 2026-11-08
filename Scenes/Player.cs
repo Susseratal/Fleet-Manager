@@ -2,13 +2,25 @@ using Godot;
 using System;
 
 public partial class Player : Node3D {
+    [Export]
+    Vector2 minCamPosition;
+
+    [Export]
+    Vector2 maxCamPosition;
+
     public bool paused = false;
 
     Camera3D cam;
     float movementSpeed = 1;
     int zoomLevel = 0;
     Vector2 viewportSize, viewportCamPosition;
+    bool mapScreenActive = false;
     public InteractiveObject objectHandle;
+
+    private Vector3 stashPosition;
+    private Vector3 defaultRotation;
+    private ShipData[] fleet;
+    private ResourceData[] inventory;
 
     public void TogglePause() {
         return;
@@ -18,54 +30,28 @@ public partial class Player : Node3D {
         switch (zl) {
             case 0:
                 cam.Fov = 90.0f;
-                movementSpeed = 1;
+                movementSpeed = 0.8f;
                 break;
             case 1:
                 cam.Fov = 80.0f;
-                movementSpeed = 0.8f;
+                movementSpeed = 0.6f;
                 break;
             case 2:
                 cam.Fov = 60.0f;
-                movementSpeed = 0.6f;
-                break;
-            case 3:
-                cam.Fov = 40.0f;
                 movementSpeed = 0.4f;
                 break;
+            case 3:
+                cam.Fov = 50.0f;
+                movementSpeed = 0.3f;
+                break;
             case 4:
-                cam.Fov = 20.0f;
+                cam.Fov = 40.0f;
                 movementSpeed = 0.2f;
                 break;
             default:
                 break;
         }
 
-    }
-
-    private void DrawLine(Vector3 pos1, Vector3 pos2, Color color) { 
-        MeshInstance3D meshInstance = new MeshInstance3D();
-        ImmediateMesh immediateMesh = new ImmediateMesh();
-        // Material material = new Material();
-        StandardMaterial3D material = new StandardMaterial3D();
-
-        meshInstance.Mesh = immediateMesh;
-        meshInstance.CastShadow = GeometryInstance3D.ShadowCastingSetting.Off;
-        immediateMesh.SurfaceBegin(Mesh.PrimitiveType.Lines, material);
-        immediateMesh.SurfaceAddVertex(pos1);
-        immediateMesh.SurfaceAddVertex(pos2);
-        immediateMesh.SurfaceEnd();
-
-        material.ShadingMode = BaseMaterial3D.ShadingModeEnum.Unshaded;
-        material.AlbedoColor = color;
-        GetTree().GetRoot().AddChild(meshInstance);
-    }
-
-    private Godot.Collections.Dictionary LineTrace(Vector3 pos1, Vector3 pos2) { 
-        PhysicsDirectSpaceState3D worldSpace = GetWorld3D().DirectSpaceState;
-        PhysicsRayQueryParameters3D rayCastParams = PhysicsRayQueryParameters3D.Create(pos1, pos2);
-        rayCastParams.CollideWithAreas = true;
-        Godot.Collections.Dictionary collisions = worldSpace.IntersectRay(rayCastParams);
-        return collisions;
     }
 
     public Player() { }
@@ -78,6 +64,8 @@ public partial class Player : Node3D {
         viewportSize.Y = GetViewport().GetVisibleRect().Size.Y;
         viewportCamPosition.X = viewportSize.X / 2;
         viewportCamPosition.Y = viewportSize.Y / 2;
+
+        defaultRotation = Rotation;
     }
 
     public override void _Input(InputEvent @event) {
@@ -94,12 +82,12 @@ public partial class Player : Node3D {
         }
 
         if (Input.IsActionJustPressed("zoom_out")) {
-            zoomLevel = Math.Clamp(zoomLevel - 1, 0, 4);
+            zoomLevel = Math.Clamp(zoomLevel - 1, 0, 3);
             EvalCamFov(zoomLevel);
         }
 
         if (Input.IsActionJustPressed("zoom_in")) {
-            zoomLevel = Math.Clamp(zoomLevel + 1, 0, 4);
+            zoomLevel = Math.Clamp(zoomLevel + 1, 0, 3);
             EvalCamFov(zoomLevel);
         }
 
@@ -112,7 +100,25 @@ public partial class Player : Node3D {
         }
 
         if (Input.IsActionJustPressed("toggle_pause")) {
-            GD.Print("pause/unpause");
+            Global.SetGamePaused(!Global.GamePaused);
+        }
+
+        if (Input.IsActionJustPressed("toggle_map")) {
+            if (mapScreenActive) {
+                mapScreenActive = false;
+                Position = stashPosition;
+                Rotation = defaultRotation;
+                EvalCamFov(zoomLevel);
+            }
+            else {
+                stashPosition = Position;
+                Position = new Vector3(0, 75, 0);
+                Rotation = new Vector3(0, 0, 0);
+                mapScreenActive = true;
+                movementSpeed = 0;
+                cam.Fov = 120.0f;
+            }
+
         }
 
         if (Input.IsActionJustPressed("focus_target")) {
@@ -131,9 +137,9 @@ public partial class Player : Node3D {
         Vector2 inputDir = Input.GetVector("move_left", "move_right", "move_up", "move_down");
         direction = (Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
 
-        targetPosition.X = Math.Clamp(Position.X + (direction.X * movementSpeed), -35.0f, 35.0f);
+        targetPosition.X = Math.Clamp(Position.X + (direction.X * movementSpeed), minCamPosition.X, maxCamPosition.X);
         targetPosition.Y = Position.Y;
-        targetPosition.Z = Math.Clamp(Position.Z + (direction.Z * movementSpeed), -35.0f, 35.0f);
+        targetPosition.Z = Math.Clamp(Position.Z + (direction.Z * movementSpeed), minCamPosition.Y, maxCamPosition.Y);
 
         Position = targetPosition;
 

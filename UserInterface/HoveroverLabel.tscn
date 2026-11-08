@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cxg3pk88o2re1"]
+
+[ext_resource type="Script" uid="uid://bh6uyykwa6iw4" path="res://UserInterface/HoveroverLabel.cs" id="1_sa6hi"]
+
+[node name="HoveroverLabel" type="Control" unique_id=1504144460]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sa6hi")
+
+[node name="Label" type="Label" parent="." unique_id=292369484]
+layout_mode = 1
+offset_right = 77.0
+offset_bottom = 39.0
+theme_override_font_sizes/font_size = 22
+text = "name"
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="Label" unique_id=653390438]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.33333334)

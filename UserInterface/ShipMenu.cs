@@ -19,7 +19,7 @@ public partial class ShipMenu : Control {
         shipType = GetNode<Label>("Border/VerticalBox/ShipType");
     }
 
-    public void PopulateInfo(string _ShipName, ResourceData.ShipType _ShipType, Ship _ParentHandle) { 
+    public void PopulateInfo(string _ShipName, ShipData.ShipType _ShipType, Ship _ParentHandle) { 
         shipName.Text = _ShipName;
         shipType.Text = _ShipType.ToString();
         parentHandle = _ParentHandle;

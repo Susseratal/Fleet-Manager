@@ -1,7 +1,7 @@
 # Blender 4.5.3 LTS MTL File: 'Map.blend'
 # www.blender.org
 
-newmtl Jungle
+newmtl Sand
 Ns 0.000000
 Ka 1.000000 1.000000 1.000000
 Ks 0.000000 0.000000 0.000000
@@ -9,4 +9,4 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.500000
 d 1.000000
 illum 1
-map_Kd jungle.png
+map_Kd Rippled_Sand_xd0mda1_1K_BaseColor.jpg

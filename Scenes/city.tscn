@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bofymn0f067nc"]
+
+[ext_resource type="Script" uid="uid://05nk4qcgegss" path="res://Scenes/City.cs" id="1_kyn5i"]
+[ext_resource type="ArrayMesh" uid="uid://bn73abdiau7uh" path="res://Assets/Map/City.obj" id="1_u7naw"]
+[ext_resource type="Material" uid="uid://ge6gb1tb4ljd" path="res://Materials/MouseHoverOutline.tres" id="2_3qy6o"]
+[ext_resource type="PackedScene" uid="uid://cxg3pk88o2re1" path="res://UserInterface/HoveroverLabel.tscn" id="3_o60eo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u7naw"]
+size = Vector3(6.349862, 1.0600001, 5.051321)
+
+[node name="City" type="Node3D" unique_id=1168531395]
+script = ExtResource("1_kyn5i")
+outlineMaterial = ExtResource("2_3qy6o")
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=1338252625]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+mesh = ExtResource("1_u7naw")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Mesh" unique_id=1627005015]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20072913, 0.55, 0.25000048)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/StaticBody3D" unique_id=674698633]
+shape = SubResource("BoxShape3D_u7naw")
+
+[node name="HoveroverLabel" parent="." unique_id=1504144460 instance=ExtResource("3_o60eo")]
+visible = false
+
+[connection signal="mouse_entered" from="Mesh/StaticBody3D" to="." method="OnStaticBodyMouseEntered"]
+[connection signal="mouse_exited" from="Mesh/StaticBody3D" to="." method="OnStaticBodyMouseExited"]
