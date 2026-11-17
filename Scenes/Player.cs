@@ -74,7 +74,7 @@ public partial class Player : Node3D {
         ShipData startShip = new ShipData();
         startShip.ShipName = Global.GetRandomShipName();
         startShip.shipType = ShipData.ShipType.Schooner;
-        fleet.Add(new ShipData());
+        fleet.Add(startShip);
 
         piecesOfEight = 5.0f;
     }
