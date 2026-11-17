@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://8d6e7kxcr4gs"]
+
+[ext_resource type="Script" uid="uid://bltj8ad4g4eu1" path="res://UserInterface/CityMenu.cs" id="1_2x8o4"]
+[ext_resource type="Texture2D" uid="uid://dt6wnwexaq8fe" path="res://Assets/UISprites/closeButton_32.png" id="2_3xtln"]
+
+[node name="CityMenu" type="Control" unique_id=5785030]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2x8o4")
+
+[node name="Border" type="ColorRect" parent="." unique_id=159490585]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -221.0
+offset_right = -7.666992
+offset_bottom = 480.0
+grow_horizontal = 0
+color = Color(0, 0, 0, 0.39215687)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Border" unique_id=290032058]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -13.333008
+offset_bottom = 173.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="Border/VBoxContainer" unique_id=169337693]
+layout_mode = 2
+icon = ExtResource("2_3xtln")
+flat = true
+icon_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Border/VBoxContainer" unique_id=1766022129]
+layout_mode = 2
+alignment = 2
+
+[node name="VerticalBox" type="VBoxContainer" parent="Border/VBoxContainer" unique_id=1649356712]
+layout_mode = 2
+alignment = 1
+
+[node name="CityName" type="Label" parent="Border/VBoxContainer/VerticalBox" unique_id=1900625812]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CityProduces" type="Label" parent="Border/VBoxContainer/VerticalBox" unique_id=1201609741]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Producing: Nails (10)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CityRequires" type="Label" parent="Border/VBoxContainer/VerticalBox" unique_id=1033807269]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Requires: Salt"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Border/VBoxContainer/Button" to="." method="ButtonClicked"]

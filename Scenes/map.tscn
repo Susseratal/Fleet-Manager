@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dk5cqg33rimnc"]
 
+[ext_resource type="Script" uid="uid://8y738ommt2em" path="res://Scenes/Map.cs" id="1_olcgw"]
 [ext_resource type="PackedScene" uid="uid://dxubltr2lxi53" path="res://Scenes/Player.tscn" id="2_26yhd"]
 [ext_resource type="ArrayMesh" uid="uid://xkk4aostynyi" path="res://Assets/Map/Map.obj" id="3_myvm1"]
-[ext_resource type="PackedScene" uid="uid://luo0hky8mp4g" path="res://Scenes/ship.tscn" id="3_p3ir5"]
 [ext_resource type="Shader" uid="uid://dmre0j167f2k6" path="res://Assets/Map/WaterShader/water.gdshader" id="4_q0mm3"]
 [ext_resource type="ArrayMesh" uid="uid://byauu4x25250b" path="res://Assets/Map/LandMasses.obj" id="5_w7jjh"]
 [ext_resource type="PackedScene" uid="uid://bofymn0f067nc" path="res://Scenes/city.tscn" id="6_np2xp"]
@@ -61,32 +61,21 @@ shader_parameter/ITER_GEOMETRY = 3
 shader_parameter/ITER_FRAGMENT = 5
 
 [node name="Root" type="Node3D" unique_id=1254878992]
+script = ExtResource("1_olcgw")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=237745108]
 transform = Transform3D(-0.8660254, -0.43301272, 0.24999997, -4.4703484e-08, 0.49999994, 0.86602545, -0.49999994, 0.74999994, -0.43301266, 0, 0, 0)
 light_color = Color(0.9310715, 0.82024795, 0.61544156, 1)
 light_energy = 0.75
-light_angular_distance = 2.0
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2031641689]
 environment = SubResource("Environment_p3ir5")
 
 [node name="Player" parent="." unique_id=261128224 instance=ExtResource("2_26yhd")]
-transform = Transform3D(1, 0, 0, 0, 0.9659255, -0.25881895, 0, 0.25881895, 0.9659255, 0, 20, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9659255, -0.25881895, 0, 0.25881895, 0.9659255, -15, 20, -25)
 minCamPosition = Vector2(-175, -150)
 maxCamPosition = Vector2(175, 150)
-
-[node name="Ship" parent="." unique_id=1757413001 instance=ExtResource("3_p3ir5")]
-transform = Transform3D(0.35355338, 0, -0.35355338, 0, 0.5, 0, 0.35355338, 0, 0.35355338, -6.316717, 0.41020155, -4.9203215)
-
-[node name="Ship2" parent="." unique_id=446590619 instance=ExtResource("3_p3ir5")]
-transform = Transform3D(-0.42652133, 0, -0.9044775, 0, 1, 0, 0.9044775, 0, -0.42652133, -10.117673, 0.41020155, 59.363632)
-shipType = 2
-
-[node name="Ship3" parent="." unique_id=853700406 instance=ExtResource("3_p3ir5")]
-transform = Transform3D(0.12940954, 0, 0.4829629, 0, 0.5, 0, -0.4829629, 0, 0.12940954, -0.89590263, 0.41020155, -2.9132948)
-shipType = 1
 
 [node name="Map" type="MeshInstance3D" parent="." unique_id=1096879028]
 transform = Transform3D(3.5265203, 0, 0, 0, 1, 0, 0, 0, 3.5265203, -0.11745721, 0, 0.11745961)
@@ -100,7 +89,7 @@ mesh = ExtResource("5_w7jjh")
 [node name="Cities" type="Node3D" parent="." unique_id=924559935]
 
 [node name="Havana" parent="Cities" unique_id=1168531395 instance=ExtResource("6_np2xp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.77569, 0.77153754, -16.660347)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -42.158455, 0.77153754, -15.799807)
 cityName = "Havana"
 
 [node name="Santiago" parent="Cities" unique_id=1789781662 instance=ExtResource("6_np2xp")]
@@ -116,7 +105,7 @@ transform = Transform3D(0.96592575, 0, 0.2588191, 0, 1, 0, -0.2588191, 0, 0.9659
 cityName = "Porto Bello"
 
 [node name="Guatemala" parent="Cities" unique_id=1871543450 instance=ExtResource("6_np2xp")]
-transform = Transform3D(1.2444632, 0, -0.83744323, 0, 1.5, 0, 0.83744323, 0, 1.2444632, -107.72208, 0.77153945, 36.299)
+transform = Transform3D(1.2444632, 0, -0.83744323, 0, 1.5, 0, 0.83744323, 0, 1.2444632, -109.37593, 0.77153945, 38.082893)
 cityName = "Guatemala"
 
 [node name="Omoa" parent="Cities" unique_id=1013596086 instance=ExtResource("6_np2xp")]
@@ -157,54 +146,194 @@ cityName = "Nassau"
 
 [node name="Plants" type="Node3D" parent="." unique_id=1326713810]
 
-[node name="PalmFrond" type="MeshInstance3D" parent="Plants" unique_id=231153616]
+[node name="Cuba" type="Node3D" parent="Plants" unique_id=1170564215]
+
+[node name="PalmFrond" type="MeshInstance3D" parent="Plants/Cuba" unique_id=231153616]
 transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -12.113386, 0.7030432, 2.8255062)
 mesh = ExtResource("7_w7jjh")
 
-[node name="PalmFrond2" type="MeshInstance3D" parent="Plants" unique_id=1690587900]
+[node name="PalmFrond2" type="MeshInstance3D" parent="Plants/Cuba" unique_id=1690587900]
 transform = Transform3D(0.7071067, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.7071067, -10.936782, 0.7030432, 5.6610603)
 mesh = ExtResource("7_w7jjh")
 
-[node name="PalmFrond3" type="MeshInstance3D" parent="Plants" unique_id=2066233317]
+[node name="PalmFrond3" type="MeshInstance3D" parent="Plants/Cuba" unique_id=2066233317]
 transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -13.783651, 0.7030432, 4.9827204)
 mesh = ExtResource("7_w7jjh")
 
-[node name="PalmFrond4" type="MeshInstance3D" parent="Plants" unique_id=1914536829]
+[node name="PalmFrond4" type="MeshInstance3D" parent="Plants/Cuba" unique_id=1914536829]
 transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -9.616184, 0.7030432, 3.6111863)
 mesh = ExtResource("7_w7jjh")
 
-[node name="PalmFrond5" type="MeshInstance3D" parent="Plants" unique_id=968062441]
+[node name="PalmFrond5" type="MeshInstance3D" parent="Plants/Cuba" unique_id=968062441]
 transform = Transform3D(-1, 0, -5.9604645e-08, 0, 1, 0, 5.9604645e-08, 0, -1, -14.958733, 0.7030432, 2.2087398)
 mesh = ExtResource("7_w7jjh")
 
-[node name="PalmFrond6" type="MeshInstance3D" parent="Plants" unique_id=825348528]
+[node name="PalmFrond6" type="MeshInstance3D" parent="Plants/Cuba" unique_id=825348528]
 transform = Transform3D(1.1920929e-07, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, 1.1920929e-07, -17.662811, 0.7030432, 0.29152298)
 mesh = ExtResource("7_w7jjh")
 
-[node name="PalmFrond7" type="MeshInstance3D" parent="Plants" unique_id=1493507332]
+[node name="PalmFrond7" type="MeshInstance3D" parent="Plants/Cuba" unique_id=1493507332]
 transform = Transform3D(-1, 0, -5.9604645e-08, 0, 1, 0, 5.9604645e-08, 0, -1, -15.303057, 0.7030432, -0.49769783)
 mesh = ExtResource("7_w7jjh")
 
-[node name="PalmFrond8" type="MeshInstance3D" parent="Plants" unique_id=661251087]
+[node name="PalmFrond8" type="MeshInstance3D" parent="Plants/Cuba" unique_id=661251087]
 transform = Transform3D(-1, 0, -5.9604645e-08, 0, 1, 0, 5.9604645e-08, 0, -1, -12.695255, 0.7030432, -0.036723733)
 mesh = ExtResource("7_w7jjh")
 
-[node name="PalmFrond9" type="MeshInstance3D" parent="Plants" unique_id=452006191]
+[node name="PalmFrond9" type="MeshInstance3D" parent="Plants/Cuba" unique_id=452006191]
 transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -10.030829, 0.7030432, 1.1347854)
 mesh = ExtResource("7_w7jjh")
 
-[node name="PalmFrond10" type="MeshInstance3D" parent="Plants" unique_id=1473868552]
+[node name="PalmFrond10" type="MeshInstance3D" parent="Plants/Cuba" unique_id=1473868552]
 transform = Transform3D(0.6010407, 0, 0.60104084, 0, 0.85, 0, -0.60104084, 0, 0.6010407, -2.8496509, 0.7030432, 5.0502377)
 mesh = ExtResource("7_w7jjh")
 
-[node name="PalmFrond11" type="MeshInstance3D" parent="Plants" unique_id=1529060084]
+[node name="PalmFrond11" type="MeshInstance3D" parent="Plants/Cuba" unique_id=1529060084]
 transform = Transform3D(-0.18117341, 0, -0.67614806, 0, 0.7, 0, 0.67614806, 0, -0.18117341, -7.0762897, 0.7030432, 4.825555)
 mesh = ExtResource("7_w7jjh")
 
-[node name="PalmFrond12" type="MeshInstance3D" parent="Plants" unique_id=1989182200]
+[node name="PalmFrond12" type="MeshInstance3D" parent="Plants/Cuba" unique_id=1989182200]
 transform = Transform3D(0.7707464, 0, -0.7707464, 0, 1.09, 0, 0.7707464, 0, 0.7707464, -5.028273, 0.7030432, 3.3829272)
 mesh = ExtResource("7_w7jjh")
 
-[node name="PalmFrond13" type="MeshInstance3D" parent="Plants" unique_id=861916124]
+[node name="PalmFrond13" type="MeshInstance3D" parent="Plants/Cuba" unique_id=861916124]
 transform = Transform3D(0.56568545, 0, -0.56568545, 0, 0.8, 0, 0.56568545, 0, 0.56568545, -7.6324863, 0.7030432, 2.320621)
 mesh = ExtResource("7_w7jjh")
+
+[node name="PalmFrond14" type="MeshInstance3D" parent="Plants/Cuba" unique_id=1516950933]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -20.089983, 0.7030432, -4.163911)
+mesh = ExtResource("7_w7jjh")
+
+[node name="PalmFrond15" type="MeshInstance3D" parent="Plants/Cuba" unique_id=342345227]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -22.490799, 0.70304227, -2.9227593)
+mesh = ExtResource("7_w7jjh")
+
+[node name="PalmFrond16" type="MeshInstance3D" parent="Plants/Cuba" unique_id=1976068428]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -20.57528, 0.7030432, -0.78970456)
+mesh = ExtResource("7_w7jjh")
+
+[node name="PalmFrond17" type="MeshInstance3D" parent="Plants/Cuba" unique_id=1166694024]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -17.064514, 0.7030432, -3.0455954)
+mesh = ExtResource("7_w7jjh")
+
+[node name="PalmFrond18" type="MeshInstance3D" parent="Plants/Cuba" unique_id=1456041184]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -16.481052, 0.7030432, 6.6253366)
+mesh = ExtResource("7_w7jjh")
+
+[node name="PalmFrond19" type="MeshInstance3D" parent="Plants/Cuba" unique_id=1912904718]
+transform = Transform3D(-0.2588191, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, -0.2588191, -27.611197, 0.7030432, -9.783549)
+mesh = ExtResource("7_w7jjh")
+
+[node name="PalmFrond20" type="MeshInstance3D" parent="Plants/Cuba" unique_id=1718468016]
+transform = Transform3D(-0.2588191, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, -0.2588191, -31.331722, 0.70304227, -9.750194)
+mesh = ExtResource("7_w7jjh")
+
+[node name="PalmFrond21" type="MeshInstance3D" parent="Plants/Cuba" unique_id=131470349]
+transform = Transform3D(-0.2588191, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, -0.2588191, -32.035797, 0.70304227, -7.1689634)
+mesh = ExtResource("7_w7jjh")
+
+[node name="PalmFrond22" type="MeshInstance3D" parent="Plants/Cuba" unique_id=636871574]
+transform = Transform3D(-0.2588191, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, -0.2588191, -28.506943, 0.7030432, -6.0802846)
+mesh = ExtResource("7_w7jjh")
+
+[node name="PalmFrond23" type="MeshInstance3D" parent="Plants/Cuba" unique_id=1440842550]
+transform = Transform3D(-0.2588191, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, -0.2588191, -25.439291, 0.7030432, -7.8355885)
+mesh = ExtResource("7_w7jjh")
+
+[node name="PalmFrond24" type="MeshInstance3D" parent="Plants/Cuba" unique_id=1136424683]
+transform = Transform3D(-0.2588191, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, -0.2588191, -22.750595, 0.7030442, -6.150237)
+mesh = ExtResource("7_w7jjh")
+
+[node name="PalmFrond25" type="MeshInstance3D" parent="Plants/Cuba" unique_id=1368701402]
+transform = Transform3D(-0.2588191, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, -0.2588191, -24.909605, 0.7030432, -4.956728)
+mesh = ExtResource("7_w7jjh")
+
+[node name="PalmFrond26" type="MeshInstance3D" parent="Plants/Cuba" unique_id=37038201]
+transform = Transform3D(-0.7071067, 0, 0.7071069, 0, 1, 0, -0.7071069, 0, -0.7071067, -41.240234, 0.7030432, -11.934659)
+mesh = ExtResource("7_w7jjh")
+
+[node name="PalmFrond27" type="MeshInstance3D" parent="Plants/Cuba" unique_id=643691692]
+transform = Transform3D(-0.7071067, 0, 0.7071069, 0, 1, 0, -0.7071069, 0, -0.7071067, -33.222088, 0.70304227, -13.183538)
+mesh = ExtResource("7_w7jjh")
+
+[node name="PalmFrond28" type="MeshInstance3D" parent="Plants/Cuba" unique_id=725576777]
+transform = Transform3D(-0.7071067, 0, 0.7071069, 0, 1, 0, -0.7071069, 0, -0.7071067, -34.428036, 0.7030432, -10.362067)
+mesh = ExtResource("7_w7jjh")
+
+[node name="PalmFrond29" type="MeshInstance3D" parent="Plants/Cuba" unique_id=838368283]
+transform = Transform3D(-0.44547716, 0, 0.44547737, 0, 0.63, 0, -0.44547737, 0, -0.44547716, -38.58046, 0.7030432, -10.0671)
+mesh = ExtResource("7_w7jjh")
+
+[node name="PalmFrond30" type="MeshInstance3D" parent="Plants/Cuba" unique_id=953069783]
+transform = Transform3D(-0.44547716, 0, 0.44547737, 0, 0.63, 0, -0.44547737, 0, -0.44547716, -41.378513, 0.7030432, -13.635973)
+mesh = ExtResource("7_w7jjh")
+
+[node name="PalmFrond31" type="MeshInstance3D" parent="Plants/Cuba" unique_id=1779303542]
+transform = Transform3D(-0.44547716, 0, 0.44547737, 0, 0.63, 0, -0.44547737, 0, -0.44547716, -43.25262, 0.7030442, -11.366941)
+mesh = ExtResource("7_w7jjh")
+
+[node name="PalmFrond32" type="MeshInstance3D" parent="Plants/Cuba" unique_id=485382732]
+transform = Transform3D(-0.44547716, 0, 0.44547737, 0, 0.63, 0, -0.44547737, 0, -0.44547716, -43.168736, 0.70304275, -12.854073)
+mesh = ExtResource("7_w7jjh")
+
+[node name="PalmFrond33" type="MeshInstance3D" parent="Plants/Cuba" unique_id=1619272908]
+transform = Transform3D(-0.590434, 0, 0.5904343, 0, 0.835, 0, -0.5904343, 0, -0.590434, -46.466328, 0.7030432, -15.794)
+mesh = ExtResource("7_w7jjh")
+
+[node name="PalmFrond34" type="MeshInstance3D" parent="Plants/Cuba" unique_id=1823222589]
+transform = Transform3D(-0.4949746, 0, 0.49497485, 0, 0.7, 0, -0.49497485, 0, -0.4949746, -48.70301, 0.7030432, -15.7758465)
+mesh = ExtResource("7_w7jjh")
+
+[node name="PalmFrond35" type="MeshInstance3D" parent="Plants/Cuba" unique_id=1911194521]
+transform = Transform3D(-0.53386545, 0, 0.53386575, 0, 0.755, 0, -0.53386575, 0, -0.53386545, -53.26161, 0.7030432, -12.783631)
+mesh = ExtResource("7_w7jjh")
+
+[node name="PalmFrond36" type="MeshInstance3D" parent="Plants/Cuba" unique_id=630717314]
+transform = Transform3D(-0.89802533, 0, 0.8980258, 0, 1.27, 0, -0.8980258, 0, -0.89802533, -52.164455, 0.7030432, -15.368018)
+mesh = ExtResource("7_w7jjh")
+
+[node name="PalmFrond37" type="MeshInstance3D" parent="Plants/Cuba" unique_id=687509105]
+transform = Transform3D(-0.9510584, 0, 0.95105886, 0, 1.345, 0, -0.95105886, 0, -0.9510584, -56.42878, 0.7030432, -13.363844)
+mesh = ExtResource("7_w7jjh")
+
+[node name="PalmFrond38" type="MeshInstance3D" parent="Plants/Cuba" unique_id=147407610]
+transform = Transform3D(-0.44547716, 0, 0.44547737, 0, 0.63, 0, -0.44547737, 0, -0.44547716, -39.555702, 0.7030432, -13.019436)
+mesh = ExtResource("7_w7jjh")
+
+[node name="PalmFrond39" type="MeshInstance3D" parent="Plants/Cuba" unique_id=933061966]
+transform = Transform3D(-0.44547716, 0, 0.44547737, 0, 0.63, 0, -0.44547737, 0, -0.44547716, -40.910473, 0.7030432, -10.288124)
+mesh = ExtResource("7_w7jjh")
+
+[node name="PalmFrond40" type="MeshInstance3D" parent="Plants/Cuba" unique_id=1251629623]
+transform = Transform3D(1.1920929e-07, 0, 1, 0, 1, 0, -1, 0, 1.1920929e-07, -37.163315, 0.7030432, -13.287615)
+mesh = ExtResource("7_w7jjh")
+
+[node name="PalmFrond41" type="MeshInstance3D" parent="Plants/Cuba" unique_id=1937785605]
+transform = Transform3D(2.0861626e-07, 0, 0.63, 0, 0.63000005, 0, -0.63, 0, 2.0861626e-07, -36.603134, 0.7030432, -10.086307)
+mesh = ExtResource("7_w7jjh")
+
+[node name="PalmFrond42" type="MeshInstance3D" parent="Plants/Cuba" unique_id=260781361]
+transform = Transform3D(2.0861626e-07, 0, 0.63, 0, 0.63000005, 0, -0.63, 0, 2.0861626e-07, -36.058083, 0.7030432, -14.588404)
+mesh = ExtResource("7_w7jjh")
+
+[node name="PalmFrond43" type="MeshInstance3D" parent="Plants/Cuba" unique_id=1974138254]
+transform = Transform3D(2.0861626e-07, 0, 0.63, 0, 0.63000005, 0, -0.63, 0, 2.0861626e-07, -38.987724, 0.7030442, -14.309151)
+mesh = ExtResource("7_w7jjh")
+
+[node name="PalmFrond44" type="MeshInstance3D" parent="Plants/Cuba" unique_id=31196489]
+transform = Transform3D(2.0861626e-07, 0, 0.63, 0, 0.63000005, 0, -0.63, 0, 2.0861626e-07, -37.876846, 0.70304275, -15.301395)
+mesh = ExtResource("7_w7jjh")
+
+[node name="PalmFrond45" type="MeshInstance3D" parent="Plants/Cuba" unique_id=1511179087]
+transform = Transform3D(2.0861626e-07, 0, 0.63, 0, 0.63000005, 0, -0.63, 0, 2.0861626e-07, -35.623623, 0.7030432, -11.65121)
+mesh = ExtResource("7_w7jjh")
+
+[node name="PalmFrond46" type="MeshInstance3D" parent="Plants/Cuba" unique_id=285299692]
+transform = Transform3D(2.0861626e-07, 0, 0.63, 0, 0.63000005, 0, -0.63, 0, 2.0861626e-07, -38.197155, 0.7030432, -11.77743)
+mesh = ExtResource("7_w7jjh")
+
+[node name="GameClock" type="Timer" parent="." unique_id=1226229696]
+process_callback = 0
+wait_time = 60.0
+
+[connection signal="timeout" from="GameClock" to="." method="OnClockTimeout"]

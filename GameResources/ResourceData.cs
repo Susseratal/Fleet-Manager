@@ -1,21 +1,11 @@
 using Godot;
 using System;
 
-public class ResourceData  {
-    [Export]
-    public Sprite2D icon;
-    [Export]
+public struct ResourceData { 
+    public Texture2D sprite;
     public string name;
-    [Export]
-    public int baseValue;
-}
-
-public class Sugar : ResourceData {
-    public Sugar() {
-        icon = null;
-        name = "Sugar";
-        baseValue = 5;
-    }
+    public float baseValue;
+    public string unit;
 }
 
 public partial class ShipData { 
@@ -28,7 +18,6 @@ public partial class ShipData {
     }
 
     public string ShipName;
+    public ShipType shipType;
     public ResourceData[] Inventory;
-
-    // uhh
 }

@@ -8,12 +8,19 @@ public partial class City : Node3D, InteractiveObject {
     [Export]
     Material outlineMaterial;
 
+    // [Export]
+    public ResourceData produces;
+
+    // [Export]
+    public ResourceData requires;
+
     public InteractiveObject.Info info;
     public bool selected;
+    public CityMenu cityMenu;
 
     private MeshInstance3D mesh;
     private HoveroverLabel nametag;
-    private Player playerHandle;
+    public Player playerHandle;
 
     public Vector3 GetObjectPosition() {
         return Position;
@@ -29,11 +36,13 @@ public partial class City : Node3D, InteractiveObject {
         nametag = GetNode<HoveroverLabel>("HoveroverLabel");
         playerHandle = GetNode<Player>("../../Player");
         mesh = GetNode<MeshInstance3D>("Mesh");
+        cityMenu = GetNode<CityMenu>("CityMenu");
         nametag.SetTagText(cityName);
     }
 
-    public void Interact() { 
-        // asdf
+    public void Interact(Player _playerHandle) {
+        cityMenu.Visible = true;
+        _playerHandle.menuOpen = true;
     }
 
     public void OnStaticBodyMouseEntered() {

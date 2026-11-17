@@ -4,8 +4,8 @@ using System;
 public partial class Ship : CharacterBody3D, InteractiveObject {
     const float SPEED = 5.0f;
 
-    [Export]
-    public ShipData.ShipType shipType;
+    //[Export]
+    //public ShipData.ShipType shipType;
 
     [Export]
     Material outlineMaterial;
@@ -44,7 +44,7 @@ public partial class Ship : CharacterBody3D, InteractiveObject {
 
     public override void _Ready() {
         base._Ready();
-        shipData.ShipName = Global.GetRandomShipName();
+        // shipData.ShipName = Global.GetRandomShipName();
 
         playerHandle = GetNode<Player>("../Player");
         mesh = GetNode<MeshInstance3D>("Mesh");
@@ -55,7 +55,7 @@ public partial class Ship : CharacterBody3D, InteractiveObject {
         // shipMenu.PopulateInfo(shipData.ShipName, shipType, this);
 
         selected = false;
-        targetLocation = new Vector3(5, 0, 0);
+        targetLocation = new Vector3(0, 0, 0);
         hasTargetLocation = false;
     }
 
@@ -71,7 +71,8 @@ public partial class Ship : CharacterBody3D, InteractiveObject {
             MoveAndSlide();
         }
     }
-    public void Interact() {
+
+    public void Interact(Player _playerHandle) {
         selected = !selected;
     }
 

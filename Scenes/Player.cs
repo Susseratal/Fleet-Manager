@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class Player : Node3D {
     [Export]
@@ -15,12 +16,16 @@ public partial class Player : Node3D {
     int zoomLevel = 0;
     Vector2 viewportSize, viewportCamPosition;
     bool mapScreenActive = false;
+
     public InteractiveObject objectHandle;
+    public bool menuOpen = false;
 
     private Vector3 stashPosition;
     private Vector3 defaultRotation;
-    private ShipData[] fleet;
-    private ResourceData[] inventory;
+
+    private float piecesOfEight;
+    private List<ShipData> fleet;
+    private List<ResourceData> inventory;
 
     public void TogglePause() {
         return;
@@ -66,6 +71,12 @@ public partial class Player : Node3D {
         viewportCamPosition.Y = viewportSize.Y / 2;
 
         defaultRotation = Rotation;
+        ShipData startShip = new ShipData();
+        startShip.ShipName = Global.GetRandomShipName();
+        startShip.shipType = ShipData.ShipType.Schooner;
+        fleet.Add(new ShipData());
+
+        piecesOfEight = 5.0f;
     }
 
     public override void _Input(InputEvent @event) {
@@ -74,7 +85,7 @@ public partial class Player : Node3D {
 
     public override void _PhysicsProcess(double delta) {
         if (Input.IsActionJustPressed("left_click")) {
-            if (objectHandle != null) { objectHandle.Interact(); }
+            if (objectHandle != null) { objectHandle.Interact(this); }
         }
 
         if (Input.IsActionJustPressed("right_click")) {
@@ -82,17 +93,19 @@ public partial class Player : Node3D {
         }
 
         if (Input.IsActionJustPressed("zoom_out")) {
+            if (menuOpen) { return; }
             zoomLevel = Math.Clamp(zoomLevel - 1, 0, 3);
             EvalCamFov(zoomLevel);
         }
 
         if (Input.IsActionJustPressed("zoom_in")) {
+            if (menuOpen) { return; }
             zoomLevel = Math.Clamp(zoomLevel + 1, 0, 3);
             EvalCamFov(zoomLevel);
         }
 
         if (Input.IsActionJustPressed("game_speed_up")) {
-            GD.Print("game speed up");
+            // GD.Print("game speed up");
         }
 
         if (Input.IsActionJustPressed("game_speed_down")) {
@@ -104,6 +117,7 @@ public partial class Player : Node3D {
         }
 
         if (Input.IsActionJustPressed("toggle_map")) {
+            if (menuOpen) { return; }
             if (mapScreenActive) {
                 mapScreenActive = false;
                 Position = stashPosition;
@@ -122,7 +136,7 @@ public partial class Player : Node3D {
         }
 
         if (Input.IsActionJustPressed("focus_target")) {
-            if (objectHandle != null) {
+            if (objectHandle != null && !menuOpen) {
                 Vector3 objectPosition = new Vector3(objectHandle.GetObjectPosition().X, Position.Y, objectHandle.GetObjectPosition().Z);
                 //while (!playerHandle.Position.IsEqualApprox(targetPosition)) { 
                 //    // lerp player to this ship
@@ -130,6 +144,11 @@ public partial class Player : Node3D {
                 //}
                 Position = objectPosition;
             }
+        }
+
+        if (Input.IsActionJustPressed("move_home")) {
+            if (menuOpen) { return; }
+            Position = new Vector3(-15.0f, 20.0f, -25.0f);
         }
 
         Vector3 targetPosition = new Vector3(0,0,0);
@@ -141,10 +160,8 @@ public partial class Player : Node3D {
         targetPosition.Y = Position.Y;
         targetPosition.Z = Math.Clamp(Position.Z + (direction.Z * movementSpeed), minCamPosition.Y, maxCamPosition.Y);
 
+        if (menuOpen) { return; }
         Position = targetPosition;
-
-        // Velocity = _targetVelocity;
-        // MoveAndSlide();
 
     }
 }

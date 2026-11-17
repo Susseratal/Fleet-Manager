@@ -4,6 +4,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bn73abdiau7uh" path="res://Assets/Map/City.obj" id="1_u7naw"]
 [ext_resource type="Material" uid="uid://ge6gb1tb4ljd" path="res://Materials/MouseHoverOutline.tres" id="2_3qy6o"]
 [ext_resource type="PackedScene" uid="uid://cxg3pk88o2re1" path="res://UserInterface/HoveroverLabel.tscn" id="3_o60eo"]
+[ext_resource type="PackedScene" uid="uid://8d6e7kxcr4gs" path="res://UserInterface/CityMenu.tscn" id="5_stmv5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u7naw"]
 size = Vector3(6.349862, 1.0600001, 5.051321)
@@ -23,6 +24,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20072913, 0.55, 0.25000048)
 shape = SubResource("BoxShape3D_u7naw")
 
 [node name="HoveroverLabel" parent="." unique_id=1504144460 instance=ExtResource("3_o60eo")]
+visible = false
+
+[node name="CityMenu" parent="." unique_id=5785030 instance=ExtResource("5_stmv5")]
 visible = false
 
 [connection signal="mouse_entered" from="Mesh/StaticBody3D" to="." method="OnStaticBodyMouseEntered"]

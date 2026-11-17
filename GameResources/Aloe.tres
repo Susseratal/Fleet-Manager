@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Aloe" format=3 uid="uid://dpjx8hx6mu53p"]
+
+[ext_resource type="Script" uid="uid://dno74iltg144t" path="res://GameResources/Aloe.cs" id="1_s2miu"]
+
+[resource]
+script = ExtResource("1_s2miu")
+name = "Aloe"
+baseValue = 1.2
+spritePath = "res://Assets/GameResourceData/T_UnknownItemSprite.png"
+metadata/_custom_type_script = "uid://dno74iltg144t"

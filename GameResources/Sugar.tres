@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Sugar" format=3 uid="uid://c05ihqs53wtjn"]
+
+[ext_resource type="Script" uid="uid://b6q34rm0ka7ja" path="res://GameResources/Sugar.cs" id="1_ab4xw"]
+
+[resource]
+script = ExtResource("1_ab4xw")
+name = "Sugar"
+baseValue = 5.0
+spritePath = "res://Assets/GameResourceData/T_UnknownItemSprite.png"
+metadata/_custom_type_script = "uid://b6q34rm0ka7ja"

@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://vy8tlxtjgri8"
+
+[deps]
+
+files=["res://Assets/LootTable.1.25.translation", "res://Assets/LootTable.lb.translation", "res://Assets/LootTable.res://Assets/GameResourceData/T.translation"]
+
+source_file="res://Assets/LootTable.csv"
+dest_files=["res://Assets/LootTable.1.25.translation", "res://Assets/LootTable.lb.translation", "res://Assets/LootTable.res://Assets/GameResourceData/T.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true
